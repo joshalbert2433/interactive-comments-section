@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 export default function CommentInput() {
+	console.log("hello");
 	return (
 		<div className="bg-[#FFFFFF] p-4 space-y-4 rounded-lg shadow">
 			<textarea

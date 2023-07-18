@@ -3,12 +3,12 @@
 export default function DeleteModal() {
 	return (
 		<>
-			<button
+			{/* <button
 				className="btn"
 				onClick={() => window.my_modal_1.showModal()}
 			>
 				open modal
-			</button>
+			</button> */}
 			<dialog id="my_modal_1" className="modal">
 				<form
 					method="dialog"

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import PointsCounter from "../pointsCounter";
 
 export default function CommentCard(props) {
 	const { content, createdAt, score, user } = props;
@@ -37,23 +38,7 @@ export default function CommentCard(props) {
 			<p className="text-slate-500">{content}</p>
 
 			<div className="flex justify-between">
-				<div className="flex gap-4 items-center w-fit bg-[#F3F5F6] px-3 py-2   rounded-lg">
-					<Image
-						src="/images/icon-plus.svg"
-						width={15}
-						height={15}
-						alt="Picture of plus sign"
-					/>
-
-					<div className="font-bold text-[#5F5DA6]">{score}</div>
-
-					<Image
-						src="/images/icon-minus.svg"
-						width={14}
-						height={14}
-						alt="Picture of plus sign"
-					/>
-				</div>
+				<PointsCounter score={score} />
 
 				<div className="flex gap-2 items-center">
 					<Image
