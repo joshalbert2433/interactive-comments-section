@@ -1,24 +1,18 @@
+"use client";
+
 import Image from "next/image";
 import PointsCounter from "../pointsCounter";
+import ReplyButton from "../buttons/replyButton";
+import useReplyStore from "../../_store/useReplyStore";
 
 export default function CommentCard(props) {
-	const { content, createdAt, score, user } = props;
-	const { username, image } = user;
+	const [activeIndex, setActiveIndex] = useReplyStore((state) => [
+		state.activeIndex,
+		state.setActiveIndex,
+	]);
 
-	// {
-	//     "id": 1,
-	//     "content": "Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.",
-	//     "createdAt": "1 month ago",
-	//     "score": 12,
-	//     "user": {
-	//       "image": {
-	//         "png": "./images/avatars/image-amyrobson.png",
-	//         "webp": "./images/avatars/image-amyrobson.webp"
-	//       },
-	//       "username": "amyrobson"
-	//     },
-	//     "replies": []
-	//   },
+	const { content, createdAt, score, user, indexState } = props;
+	const { username, image } = user;
 
 	return (
 		<div className="bg-[#FFFFFF] p-4 space-y-4 rounded-lg shadow">
@@ -40,16 +34,7 @@ export default function CommentCard(props) {
 			<div className="flex justify-between">
 				<PointsCounter score={score} />
 
-				<div className="flex gap-2 items-center">
-					<Image
-						src="/images/icon-reply.svg"
-						width={17}
-						height={17}
-						alt="Picture of return sign"
-					/>
-
-					<div className="font-bold text-[#5F5DA6]">Reply</div>
-				</div>
+				<ReplyButton onClick={() => setActiveIndex(indexState)} />
 			</div>
 		</div>
 	);

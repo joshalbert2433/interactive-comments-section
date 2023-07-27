@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 export default function CommentInput() {
-	console.log("hello");
 	return (
 		<div className="bg-[#FFFFFF] p-4 space-y-4 rounded-lg shadow">
 			<textarea
@@ -9,7 +8,7 @@ export default function CommentInput() {
 				name=""
 				id=""
 				placeholder="Add a comment..."
-				className="font-semibold h-[100px] rounded-lg border-2 w-full resize-none p-4"
+				className="h-[100px] rounded-lg border-2 w-full resize-none p-4"
 			></textarea>
 			<div className="flex justify-between  items-center">
 				<Image

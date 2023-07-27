@@ -1,3 +1,6 @@
 add replyinput component and  fucntion
 add desktop view
 add comment, reply, delete function
+
+
+add reply function
