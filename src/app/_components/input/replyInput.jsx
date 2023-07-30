@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function ReplyInput({ indexState }) {
+export default function ReplyInput() {
 	return (
 		<div className="bg-[#FFFFFF] p-4 space-y-4 rounded-lg shadow">
 			<textarea
@@ -9,6 +9,7 @@ export default function ReplyInput({ indexState }) {
 				id=""
 				placeholder="Add a comment..."
 				className="h-[100px] rounded-lg border-2 w-full resize-none p-4"
+				onChange={(e) => setInputValue(e.target.value)}
 			></textarea>
 			<div className="flex justify-between  items-center">
 				<Image

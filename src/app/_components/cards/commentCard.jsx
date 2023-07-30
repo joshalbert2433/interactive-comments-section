@@ -6,12 +6,12 @@ import ReplyButton from "../buttons/replyButton";
 import useReplyStore from "../../_store/useReplyStore";
 
 export default function CommentCard(props) {
-	const [activeIndex, setActiveIndex] = useReplyStore((state) => [
-		state.activeIndex,
-		state.setActiveIndex,
+	const [activeReply, setActiveReply] = useReplyStore((state) => [
+		state.activeReply,
+		state.setActiveReply,
 	]);
 
-	const { content, createdAt, score, user, indexState } = props;
+	const { id, content, createdAt, score, user, indexState } = props;
 	const { username, image } = user;
 
 	return (
@@ -34,7 +34,9 @@ export default function CommentCard(props) {
 			<div className="flex justify-between">
 				<PointsCounter score={score} />
 
-				<ReplyButton onClick={() => setActiveIndex(indexState)} />
+				<ReplyButton
+					onClick={() => setActiveReply("comment", indexState)}
+				/>
 			</div>
 		</div>
 	);

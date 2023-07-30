@@ -1,9 +1,16 @@
 import Image from "next/image";
 import ReplyButton from "../buttons/replyButton";
 import PointsCounter from "../pointsCounter";
+import useReplyStore from "../../_store/useReplyStore";
 
 export default function ReplyCard(props) {
-	const { content, createdAt, score, replyingTo, user } = props;
+	const [activeReply, setActiveReply] = useReplyStore((state) => [
+		state.activeReply,
+		state.setActiveReply,
+	]);
+
+	const { id, content, createdAt, score, replyingTo, user, indexState } =
+		props;
 	const { username, image } = user;
 
 	return (
@@ -31,7 +38,9 @@ export default function ReplyCard(props) {
 			<div className="flex justify-between">
 				<PointsCounter score={score} />
 
-				<ReplyButton />
+				<ReplyButton
+					onClick={() => setActiveReply("reply", indexState)}
+				/>
 			</div>
 		</div>
 	);

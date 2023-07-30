@@ -2,10 +2,12 @@
 
 import { create } from "zustand";
 
-// Create the Zustand store
 const useReplyStore = create((set) => ({
-	activeIndex: false,
-	setActiveIndex: (value) => set((state) => ({ activeIndex: value })),
+	activeReply: { type: null, index: null },
+	setActiveReply: (type, index) =>
+		set((state) => ({
+			activeReply: { ...state.activeReply, type: type, index: index },
+		})),
 }));
 
 export default useReplyStore;

@@ -10,14 +10,18 @@ import useReplyStore from "./_store/useReplyStore";
 import ReplyInput from "./_components/input/replyInput";
 
 export default function Home() {
-	const [activeIndex, setActiveIndex] = useReplyStore((state) => [
-		state.activeIndex,
-		state.setActiveIndex,
+	const [activeReply, setActiveReply] = useReplyStore((state) => [
+		state.activeReply,
+		state.setActiveReply,
 	]);
 
 	const data = jsonData;
 
-	const currentUser = data.currentUser.username;
+	const currentUser = data?.currentUser?.username;
+
+	if (data.length === 0) {
+		return <div>Loading...</div>;
+	}
 
 	return (
 		<main className="mt-12 m-4 flex gap-4 flex-col">
@@ -25,9 +29,10 @@ export default function Home() {
 				return (
 					<>
 						<CommentCard {...comment} indexState={index} />
-						{activeIndex === index && (
-							<ReplyInput indexState={index} />
-						)}
+						{activeReply?.type === "comment" &&
+							activeReply?.index === index && (
+								<ReplyInput userId={comment.id} />
+							)}
 						{comment.replies.length > 0 && (
 							<div className="flex gap-4">
 								<div className=" w-[4px] bg-slate-200"></div>
@@ -48,10 +53,14 @@ export default function Home() {
 													<ReplyCard
 														key={reply.id}
 														{...reply}
-													/>
-													<ReplyInput
 														indexState={index}
 													/>
+													{activeReply?.type ===
+														"reply" &&
+														activeReply?.index ===
+															index && (
+															<ReplyInput />
+														)}
 												</>
 											);
 										}
